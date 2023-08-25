@@ -78,7 +78,7 @@
         <div class="col-md-6">
             <label for="sex" class="form-label">Sex</label>
             <select id="sex" name="sex" class="form-select" th:field="*{sex}">
-                <option selected value="">Chose your sex</option>
+                <option selected value="">Choose your sex</option>
                 <option th:each="sex : ${T(com.example.prog4.repository.entity.enums.Sex).values()}" th:value="${sex}"
                         th:text="${sex}"></option>
             </select>
@@ -86,7 +86,7 @@
         <div class="col-md-6">
             <label for="csp" class="form-label">CSP</label>
             <select id="csp" name="csp" class="form-select" th:field="*{csp}">
-                <option selected value="">Chose your CSP</option>
+                <option selected value="">Choose your CSP</option>
                 <option th:each="csp : ${T(com.example.prog4.repository.entity.enums.Csp).values()}" th:value="${csp}"
                         th:text="${csp}"></option>
             </select>
