@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <style>
+        .profile_img {
+            width: 90px;
+            height: 90px;
+        }
+
+        table {
+            width: 100%;
+            height: 100%;
+        }
+
+        tbody {
+            width: 100%;
+            height: 100%;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+        .w-50 {
+            width: 50%;
+        }
+
+        .table-head {
+            width: 100%;
+            height: 25%;
+        }
+
+        table, thead, tbody, tr, td {
+            border: 2px solid black;
+        }
+    </style>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-size: 10px;
+            font-family: Helvetica, serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        #footer {
+            display: block;
+            position: running(footer);
+            width: 100%;
+        }
+
+        @page {
+            size: A4;
+            margin-top: 30px;
+            margin-bottom: 120px;
+            @bottom-center {
+                content: element(footer)
+            }
+        }
+    </style>
+    <style>
+        /* Style company logo */
+        .company-logo {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        /* Style phone list */
+        .list-unstyled {
+            padding: 0;
+            list-style: none;
+        }
+
+        .list-unstyled li {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<table class="table">
+    <tbody class="table-head">
+    <tr class="w-100">
+        <td class="w-50">
+            <img th:src="${employee.stringImage}" class="profile_img"/>
+        </td>
+        <td class="text-right w-50">
+            <p>
+                <span>Numéro matricule : </span>
+                <span th:text="${employee.registrationNumber}"></span>
+            </p>
+            <p>
+                <span>Noms : </span>
+                <span th:text="${employee.lastName}"></span>
+            </p>
+            <p>
+                <span>Prénoms : </span>
+                <span th:text="${employee.firstName}"></span>
+            </p>
+            <p>
+                <span>Âge : </span>
+                <span th:text="${employee.age}"></span>
+            </p>
+            <p>
+                <span>Date d'embauche: </span>
+                <span th:text="${employee.entranceDate}"></span>
+            </p>
+            <p>
+                <span>Date de départ: </span>
+                <span th:text="${employee.departureDate}"></span>
+            </p>
+            <p>
+                <span>Numéro CNAPS: </span>
+                <span th:text="${employee.cnaps}"></span>
+            </p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<table>
+    <tbody>
+    <tr>
+        <td class="text-left w-100">
+            <ul>
+                Informations sur le salaire
+                <li>
+                    <span>Salaire brut actuel: </span>
+                    <span th:text="${employee.monthlySalary}"></span>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<footer id="footer">
+    <table class="column">
+        <tbody>
+        <tr>
+            <td>
+                <img th:src="${companyConf.logo}" class="company-logo"/>
+            </td>
+            <td class="row">
+                <p th:text="${companyConf.name}"></p>
+                <div>
+                    <span>NIF: </span>
+                    <span th:text="${companyConf.taxIdentity.nif}"></span>
+                </div>
+                <div>
+                    <span>STAT: </span>
+                    <span th:text="${companyConf.name}"></span>
+                </div>
+            </td>
+            <td class="row">
+                <p th:text="${companyConf.address}"></p>
+                <ul class="list-unstyled" th:each="phone : ${companyConf.phones}">
+                    <li th:text="${phone.value}"></li>
+                </ul>
+                <p th:text="${companyConf.email}"></p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</footer>
+</body>
+</html>
