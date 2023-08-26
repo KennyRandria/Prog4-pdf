@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <style>
         .profile_img {
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
         }
 
         .position-absolute {
@@ -71,9 +71,9 @@
         }
 
         @page {
-            size: A4;
-            margin-top: 30px;
-            margin-bottom: 30%;
+            size: A5;
+            margin-top: 28px; /* Ajustez ce paramètre pour un espace de 1 cm entre l'employé et l'entreprise */
+            margin-bottom: 44%; /* Réduisez la marge inférieure de 3 % */
             @bottom-center {
                 content: element(footer)
             }
@@ -94,21 +94,6 @@
         .list-unstyled li {
             margin-right: 10px;
         }
-
-        /*
-        measurements debugging
-                table {
-                    border: 1px solid black;
-                }
-
-                tr {
-                    border: 1px solid red;
-                }
-
-                td {
-                    border: 1px solid green;
-                }
-        */
         .container {
             position: relative;
         }

@@ -15,11 +15,6 @@
     <div class="col-12 d-flex justify-content-start mb-5 align-items-center">
         <img th:src="${employee.stringImage}" alt="no image">
     </div>
-    <div>
-        <form th:action="@{/server/employee/show/{eId}/toPdf(eId=${employee.id})}" class="float-end">
-            <button class="btn btn-success form-text" type="submit">export to Pdf</button>
-        </form>
-    </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <label for="lastName" class="form-label text-black-50">Last name</label>
         <p id="lastName" th:text="*{employee.lastName}" type="text" class="form-control show-fields"></p>
@@ -84,6 +79,10 @@
         <p id="csp" class="form-control show-fields" th:text="${employee.csp}"></p>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <label for="monthlySalary" class="form-label text-black-50">Monthly Salary</label>
+        <p id="monthlySalary" th:text="*{employee.monthlySalary}" type="number" class="form-control show-fields"></p>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <label for="phones" class="form-label text-black-50">Phone</label>
         <div id="phones" th:each="phone : ${employee.phones}">
             <p th:text="${phone.countryCode} + ' ' +${phone.value}" class="form-control show-fields"></p>
@@ -95,6 +94,11 @@
             <p th:text="${position.name}" class="form-control show-fields"></p>
         </div>
     </div>
+</div>
+<div>
+    <form th:action="@{/server/employee/show/{eId}/toPdf(eId=${employee.id})}" class="float-end">
+        <button class="btn btn-success form-text" type="submit">export to Pdf</button>
+    </form>
 </div>
 
 <footer th:replace="~{components/navbar.html :: footer}"></footer>
