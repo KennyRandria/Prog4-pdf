@@ -2,16 +2,7 @@ package com.example.prog4.repository.entity;
 
 import com.example.prog4.repository.entity.enums.Csp;
 import com.example.prog4.repository.entity.enums.Sex;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +12,9 @@ import lombok.ToString;
 import org.hibernate.annotations.ColumnTransformer;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -47,12 +40,17 @@ public class Employee implements Serializable {
     private String personalEmail;
     private String professionalEmail;
     private String registrationNumber;
-
     private LocalDate birthDate;
     private LocalDate entranceDate;
     private LocalDate departureDate;
 
     private Integer childrenNumber;
+    private BigDecimal monthlySalary;
+    @Transient
+    private int age;
+    public int getAge(){
+        return Math.toIntExact(ChronoUnit.YEARS.between(birthDate, LocalDate.now()));
+    }
 
     @Enumerated(EnumType.STRING)
     @ColumnTransformer(read = "CAST(sex AS varchar)", write = "CAST(? AS sex)")

@@ -45,6 +45,7 @@ public class EmployeeMapper {
                     .cnaps(employee.getCnaps())
                     .registrationNumber(employee.getRegistrationNumber())
                     .childrenNumber(employee.getChildrenNumber())
+                    .monthlySalary(employee.getMonthlySalary())
                     // enums
                     .csp(employee.getCsp())
                     .sex(employee.getSex())
@@ -81,6 +82,8 @@ public class EmployeeMapper {
                 .cnaps(employee.getCnaps())
                 .registrationNumber(employee.getRegistrationNumber())
                 .childrenNumber(employee.getChildrenNumber())
+                .monthlySalary(employee.getMonthlySalary())
+                .age(employee.getAge())
                 // enums
                 .csp(employee.getCsp())
                 .sex(employee.getSex())
