@@ -11,6 +11,8 @@ import com.example.prog4.service.EmployeeService;
 import jakarta.servlet.http.HttpSession;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,13 +36,13 @@ public class EmployeeController {
     private EmployeeService employeeService;
     private final EmployeePdfService employeePdfService;
     private static final String EMPLOYEE_HTML_TEMPLATE = "employee_form";
+    private final CompanyConf companyConf;
 
     @GetMapping(value = "/show/{eId}/toPdf", produces = APPLICATION_PDF_VALUE)
     public ResponseEntity<byte[]> toPdf(@PathVariable("eId") String employeeId) {
         com.example.prog4.repository.entity.Employee entityEmployee = employeeService.getOne(employeeId);
         Employee modelEmployee = employeeMapper.toView(entityEmployee);
-        CompanyConf companyConf = new CompanyConf();
-        byte[] pdfCardAsBytes = employeePdfService.generateEmployeePdf(modelEmployee, companyConf,EMPLOYEE_HTML_TEMPLATE);
+        byte[] pdfCardAsBytes = employeePdfService.generateEmployeePdf(modelEmployee, companyConf, EMPLOYEE_HTML_TEMPLATE);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(APPLICATION_PDF);
@@ -48,6 +50,7 @@ public class EmployeeController {
         headers.setContentLength(pdfCardAsBytes.length);
         return new ResponseEntity<>(pdfCardAsBytes, headers, OK);
     }
+
 
 
 

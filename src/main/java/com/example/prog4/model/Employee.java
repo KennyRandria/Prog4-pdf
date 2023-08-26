@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
@@ -37,7 +38,7 @@ public class Employee implements Serializable {
     private String professionalEmail;
     private String registrationNumber;
     private BigDecimal monthlySalary;
-    private int age;
+    private Integer age;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate birthDate;

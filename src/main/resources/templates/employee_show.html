@@ -8,17 +8,17 @@
     <script th:src="@{/scripts/bootstrap.bundle.min.js}" defer></script>
 </head>
 <body>
-<header th:replace="~{components/navbar.html :: navbar('show / ' + ${eId})}"></header>
-<div th:replace="~{components/navbar.html :: navbar('show / ' + ${eId})}"></div>
-<div>
-    <form th:action="@{/server/employee/show/{eId}/toPdf(eId=${employee.id})}">
-        <button class="btn btn-success" type="submit">export</button>
-    </form>
-</div>
+<header>
+    <div th:replace="~{components/navbar.html :: navbar('show / ' + ${eId})}"></div>
 </header>
 <div class="container-fluid row text-center">
     <div class="col-12 d-flex justify-content-start mb-5 align-items-center">
         <img th:src="${employee.stringImage}" alt="no image">
+    </div>
+    <div>
+        <form th:action="@{/server/employee/show/{eId}/toPdf(eId=${employee.id})}" class="float-end">
+            <button class="btn btn-success form-text" type="submit">export to Pdf</button>
+        </form>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6 col-12">
         <label for="lastName" class="form-label text-black-50">Last name</label>
